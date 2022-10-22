@@ -1,16 +1,48 @@
 ﻿Console.Write("Введите число: ");
-string a = Convert.ToString(Console.ReadLine());
-int b = Convert.ToInt32(a);
-if (a.Length > 2)
+
+int thirdDigit(int a)
 {
-    for (int i = 0; (i < (a.Length) - 3); i++)
+    int depth = numberDepth(a);
+    if (a >= 100)
     {
-        b = b / 10;
+        while (depth > 3)
+        {
+            a = a / 10;
+            depth--;
+        }
+        a = a % 10;
+        return a;
     }
-    b = b % 10;
-    Console.Write(b);
+    else
+    {
+
+        return -1;
+    }
+}
+
+int numberDepth(int num)
+{
+    if (num == 0)
+        return 1;
+
+    var result = 0;
+    while (num > 0)
+    {
+        num = num / 10;
+        result++;
+    }
+    return result;
+}
+
+int number = Convert.ToInt32(Console.ReadLine());
+
+int digit = thirdDigit(number);
+
+if (digit == -1)
+{
+    Console.Write("Третьей цифры нет");
 }
 else
 {
-    Console.Write("Третьей цифры нет");
+    Console.Write($"Третья цифра числа равна {digit}");
 }
